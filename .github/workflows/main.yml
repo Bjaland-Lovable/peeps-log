@@ -31,4 +31,5 @@ jobs:
           
         run: |
           git remote add -t main gitlab ${{env.DESTINATION_GIT_REPOSITORY}} 
+          git pull
           git push gitlab
