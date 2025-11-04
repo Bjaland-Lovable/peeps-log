@@ -21,19 +21,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          
-        # Esto es necesario por una actualización de seguridad de Git  
-      - name: Mark workspace as safe directory
-        run: git config --global --add safe.directory /github/workspace
 
       # 2. Usa una Action pre-hecha para hacer el "mirror"
       # Esta acción es muy popular y simple de usar
       - name: Push to central repository
-        uses: wearerequired/git-mirror-action@v1
         env:
           # URL del repositorio de destino (Repo B)
-          # ¡Asegúrate de cambiar "USUARIO_O_ORG" y "REPO_CENTRAL.git"!
           DESTINATION_GIT_REPOSITORY: https://github-user:glpat-9BgeirYCQqQrFqUqyCC-@gitlab.bjaland.co/marmaraba/lovable-clone.git
           
-          # El PAT que guardaste en los Secrets en el Paso 2
-          DESTINATION_PAT: ${{ secrets.CENTRAL_REPO_PAT }}
+        run: |
+          git push --mirror ${{DESTINATION_GIT_REPOSITORY}}
