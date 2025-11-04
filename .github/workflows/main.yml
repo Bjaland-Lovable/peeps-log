@@ -21,6 +21,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          
+        # Esto es necesario por una actualización de seguridad de Git  
+      - name: Mark workspace as safe directory
+        run: git config --global --add safe.directory /github/workspace
 
       # 2. Usa una Action pre-hecha para hacer el "mirror"
       # Esta acción es muy popular y simple de usar
