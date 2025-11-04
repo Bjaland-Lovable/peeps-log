@@ -30,4 +30,5 @@ jobs:
           DESTINATION_GIT_REPOSITORY: https://github-user:glpat-9BgeirYCQqQrFqUqyCC-@gitlab.bjaland.co/marmaraba/lovable-clone.git
           
         run: |
-          git push --mirror ${{env.DESTINATION_GIT_REPOSITORY}}
+          git remote add -t main gitlab ${{env.DESTINATION_GIT_REPOSITORY}} 
+          git push gitlab
