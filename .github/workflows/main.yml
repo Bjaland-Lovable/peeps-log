@@ -1,0 +1,35 @@
+# Nombre del workflow que verás en la pestaña "Actions"
+name: Mirror to Central Repository
+
+# Disparador: Se activa en cada 'push' a la rama 'main'
+# Cambia 'main' por 'master' o la rama que quieras sincronizar
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # Nombre del trabajo
+  mirror-to-central:
+    # Usar una máquina virtual de Ubuntu
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. "Saca" el código de tu repositorio de origen (Repo A)
+      # Es importante 'fetch-depth: 0' para obtener todo el historial
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2. Usa una Action pre-hecha para hacer el "mirror"
+      # Esta acción es muy popular y simple de usar
+      - name: Push to central repository
+        uses: wearerequired/git-mirror-action@v1
+        env:
+          # URL del repositorio de destino (Repo B)
+          # ¡Asegúrate de cambiar "USUARIO_O_ORG" y "REPO_CENTRAL.git"!
+          DESTINATION_GIT_REPOSITORY: https://github-user:glpat-9BgeirYCQqQrFqUqyCC-@gitlab.bjaland.co/marmaraba/lovable-clone.git
+          
+          # El PAT que guardaste en los Secrets en el Paso 2
+          DESTINATION_PAT: ${{ secrets.CENTRAL_REPO_PAT }}
