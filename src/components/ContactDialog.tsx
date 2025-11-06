@@ -11,6 +11,7 @@ interface Contact {
   email?: string;
   phone?: string;
   address?: string;
+  city?: string;
   notes?: string;
 }
 
@@ -26,6 +27,7 @@ const ContactDialog = ({ open, onOpenChange, onSave, editingContact }: ContactDi
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [city, setCity] = useState("Burgos");
   const [notes, setNotes] = useState("");
 
   useEffect(() => {
@@ -34,12 +36,14 @@ const ContactDialog = ({ open, onOpenChange, onSave, editingContact }: ContactDi
       setEmail(editingContact.email || "");
       setPhone(editingContact.phone || "");
       setAddress(editingContact.address || "");
+      setCity(editingContact.city || "Burgos");
       setNotes(editingContact.notes || "");
     } else {
       setName("");
       setEmail("");
       setPhone("");
       setAddress("");
+      setCity("Burgos");
       setNotes("");
     }
   }, [editingContact, open]);
@@ -52,6 +56,7 @@ const ContactDialog = ({ open, onOpenChange, onSave, editingContact }: ContactDi
       email: email || undefined,
       phone: phone || undefined,
       address: address || undefined,
+      city: city || undefined,
       notes: notes || undefined,
     });
     onOpenChange(false);
@@ -108,7 +113,16 @@ const ContactDialog = ({ open, onOpenChange, onSave, editingContact }: ContactDi
                 id="address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                placeholder="Calle, número, ciudad, código postal"
+                placeholder="Calle Principal 123"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="city">Ciudad</Label>
+              <Input
+                id="city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                placeholder="Burgos"
               />
             </div>
             <div className="grid gap-2">

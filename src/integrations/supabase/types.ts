@@ -17,6 +17,7 @@ export type Database = {
       contacts: {
         Row: {
           address: string | null
+          city: string | null
           created_at: string
           email: string | null
           id: string
@@ -28,6 +29,7 @@ export type Database = {
         }
         Insert: {
           address?: string | null
+          city?: string | null
           created_at?: string
           email?: string | null
           id?: string
@@ -39,6 +41,7 @@ export type Database = {
         }
         Update: {
           address?: string | null
+          city?: string | null
           created_at?: string
           email?: string | null
           id?: string
