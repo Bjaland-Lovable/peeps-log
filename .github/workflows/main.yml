@@ -27,8 +27,7 @@ jobs:
       - name: Push to central repository
         env:
           # URL del repositorio de destino (Repo B)
-          GITLAB_TOKEN: glpat-KCnjDn3P2RGyZ_TjU4Ny
-          DESTINATION_GIT_REPOSITORY: https://github-user:${{env.GITLAB_TOKEN}}@gitlab.bjaland.co/marmaraba/lovable-clone.git
+          DESTINATION_GIT_REPOSITORY: https://github-user:glpat-KCnjDn3P2RGyZ_TjU4Ny@gitlab.bjaland.co/marmaraba/lovable-clone.git
           
         run: |
           git remote add -t main gitlab ${{env.DESTINATION_GIT_REPOSITORY}} 
