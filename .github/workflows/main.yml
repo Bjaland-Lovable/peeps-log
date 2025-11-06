@@ -31,7 +31,8 @@ jobs:
           
         run: |
           git remote add -t main gitlab ${{env.DESTINATION_GIT_REPOSITORY}} 
+          git config set advice.skippedCherryPicks false
+          git config user.email "github@axessible.com"
+          git config user.name "Lovable from GitHub"
           git pull gitlab main --rebase
-          git config --global user.email "github@axessible.com"
-          git config --global user.name "Lovable from GitHub"
           git push gitlab
